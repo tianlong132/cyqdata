@@ -1,3 +1,13 @@
+#Core版本的使用说明
+## StartUp.cs 添加   
+    services.AddDistributedMemoryCache();//支持Session的必要组件
+    services.AddSession();
+    services.AddHttpContext();
+    app.UseHttpContext();
+
+
+
+
 # cyq.data is not only a orm,but also a data access layer,it's very special and different from others,who use who love it.
 <hr />
 Demo(入门教程)：https://github.com/cyq1162/CYQ.Data.Demo <br/>
