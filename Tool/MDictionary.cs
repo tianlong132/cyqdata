@@ -212,7 +212,11 @@ namespace CYQ.Data.Tool
                 }
             }
         }
-
+        /// <summary>
+        /// 查询值是否存在，并添加了锁机制
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public new bool ContainsKey(K key)
         {
             lock (lockObj)
