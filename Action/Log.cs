@@ -66,6 +66,11 @@ namespace CYQ.Data
         {
             WriteLog(false, message);
         }
+        /// <summary>
+        ///  写日志记录
+        /// </summary>
+        /// <param name="isWriteLog">是否写日志记录到数据库</param>
+        /// <param name="message"></param>
         internal static void WriteLog(bool isWriteLog, string message)
         {
             if (isWriteLog || AppConfig.Log.IsWriteLog)
@@ -100,12 +105,21 @@ namespace CYQ.Data
         {
             WriteLogToDB(message, LogType.Error);
         }
-
+        /// <summary>
+        /// 写日志记录到数据库
+        /// </summary>
+        /// <param name="message">错误日志信息</param>
+        /// <param name="logType">错误日志类型</param>
         public static void WriteLogToDB(string message, LogType logType)
         {
             WriteLogToDB(message, logType, "System");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="logType"></param>
+        /// <param name="userName"></param>
         public static void WriteLogToDB(string message, LogType logType, string userName)
         {
             WriteLogToDB(message, logType.ToString(), userName);

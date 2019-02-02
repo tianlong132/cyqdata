@@ -809,26 +809,48 @@ namespace CYQ.Data
             int count;
             return Select(0, 0, where, out count);
         }
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="topN"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
         public MDataTable Select(int topN, object where)
         {
             int count;
             return Select(0, topN, where, out count);
         }
-        /// <param name="pageIndex">pageIndex<para>第几页</para></param>
-        /// <param name="pageSize">pageSize<para>每页数量[为0时默认选择所有]</para></param>
+        /// <summary>
+        ///  获取分页信息
+        /// </summary>
+        /// <param name="pageIndex">第几页</param>
+        /// <param name="pageSize">每页数量[为0时默认选择所有]</param>
+        /// <returns></returns>
         public MDataTable Select(int pageIndex, int pageSize)
         {
             int count;
             return Select(pageIndex, pageSize, null, out count);
         }
+        /// <summary>
+        ///  获取带条件的分页信息
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
         public MDataTable Select(int pageIndex, int pageSize, object where)
         {
             int count;
             return Select(pageIndex, pageSize, where, out count);
         }
-
-        /// <param name="rowCount">The total number of records returned
-        /// <para>返回的记录总数</para></param>
+        /// <summary>
+        ///  获取分页信息
+        /// </summary>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">每页信息数量</param>
+        /// <param name="where">where条件</param>
+        /// <param name="rowCount">返回的记录总数</param>
+        /// <returns></returns>
         public MDataTable Select(int pageIndex, int pageSize, object where, out int rowCount)
         {
             if (CheckDisposed()) { rowCount = -1; return new MDataTable(_TableName); }
@@ -1132,7 +1154,7 @@ namespace CYQ.Data
         {
             return Exists(null);
         }
-       
+
         /// <param name="where">Sql statement where the conditions: 88, "id = 88"
         /// <para>sql语句的where条件：88、"id=88"</para></param>
         public bool Exists(object where)
@@ -1222,8 +1244,13 @@ namespace CYQ.Data
             return Set(key, value, -1);
         }
 
-        /// <param name="state">set value state (0: unchanged; 1: assigned, the same value [insertable]; 2: assigned, different values [updateable])
-        /// <para>设置值状态[0:未更改；1:已赋值,值相同[可插入]；2:已赋值,值不同[可更新]]</para></param>
+        /// <summary>
+        ///  值设置
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="state">设置值状态[0:未更改；1:已赋值,值相同[可插入]；2:已赋值,值不同[可更新]]</param>
+        /// <returns></returns>
         public MAction Set(object key, object value, int state)
         {
             MDataCell cell = _Data[key];
