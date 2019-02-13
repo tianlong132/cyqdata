@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cyq.web", "..\cyq.web\cyq.w
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cyq.test", "..\cyq.test\cyq.test.csproj", "{C4223EA4-05C6-49BA-9C91-2AA4047C5F1D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperDemo", "..\DapperDemo\DapperDemo.csproj", "{6B1D9158-6879-4239-9B5B-5116E0862669}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C4223EA4-05C6-49BA-9C91-2AA4047C5F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4223EA4-05C6-49BA-9C91-2AA4047C5F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4223EA4-05C6-49BA-9C91-2AA4047C5F1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B1D9158-6879-4239-9B5B-5116E0862669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B1D9158-6879-4239-9B5B-5116E0862669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B1D9158-6879-4239-9B5B-5116E0862669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B1D9158-6879-4239-9B5B-5116E0862669}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
