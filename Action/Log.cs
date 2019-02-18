@@ -176,12 +176,20 @@ namespace CYQ.Data
             WriteLogToTxt(message, null);
         }
 
-
+        /// <summary>
+        /// 写日志到文本
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="logType"></param>
         public static void WriteLogToTxt(string message, LogType logType)
         {
             WriteLogToTxt(message, logType.ToString());
         }
-
+        /// <summary>
+        ///  写日志到文本
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="logType"></param>
         public static void WriteLogToTxt(string message, string logType)
         {
             try
@@ -221,7 +229,10 @@ namespace CYQ.Data
                 //Error.Throw("Log.WriteLogToTxt() : " + err.Message);
             }
         }
-
+        /// <summary>
+        /// 写异常到文本
+        /// </summary>
+        /// <param name="err"></param>
         public static void WriteLogToTxt(Exception err)
         {
             if (err is ThreadAbortException)//线程中止异常不记录
@@ -275,6 +286,9 @@ namespace CYQ.Data
     /// </summary>
     public class SysLogs : Orm.SimpleOrmBase
     {
+        /// <summary>
+        /// 初始化
+        /// </summary>
         public SysLogs()
         {
             base.SetInit(this, AppConfig.Log.LogTableName, AppConfig.Log.LogConn);
