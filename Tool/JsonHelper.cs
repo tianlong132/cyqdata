@@ -390,12 +390,22 @@ namespace CYQ.Data.Tool
         }
 
 
-        /// <param name="errIndex">the index of the error char
-        /// <para>错误的字符索引</para></param>
+        /// <summary>
+        /// 判断字符是不是json
+        /// </summary>
+        /// <param name="json"></param>
+        /// <param name="errIndex">错误的字符索引</param>
+        /// <returns></returns>
         public static bool IsJson(string json, out int errIndex)
         {
             return JsonSplit.IsJson(json, out errIndex);
         }
+        /// <summary>
+        /// 获取json字符指定值
+        /// </summary>
+        /// <param name="json"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static string GetValue(string json, string key)
         {
             return GetValue(json, key, DefaultEscape);
@@ -404,8 +414,10 @@ namespace CYQ.Data.Tool
         /// Get json value
         /// <para>获取Json字符串的值</para>
         /// </summary>
+        /// <param name="json"></param>
         /// <param name="key">the name or key of json
         /// <para>键值(有层级时用：XXX.YYY.ZZZ)</para></param>
+        /// <param name="op"></param>
         /// <returns></returns>
         public static string GetValue(string json, string key, EscapeOp op)
         {
@@ -485,10 +497,23 @@ namespace CYQ.Data.Tool
             js.Add("msg", msg, noQuates);
             return js.ToString();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="msgObj"></param>
+        /// <returns></returns>
         public static string OutResult(bool result, object msgObj)
         {
             return OutResult(result, ToJson(msgObj), true);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <param name="nameValues"></param>
+        /// <returns></returns>
         public static string OutResult(string name, object value, params object[] nameValues)
         {
             JsonHelper js = new JsonHelper();

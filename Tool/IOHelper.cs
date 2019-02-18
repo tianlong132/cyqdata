@@ -53,6 +53,8 @@ namespace CYQ.Data.Tool
         /// <summary>
         /// 读取文件内容
         /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="cacheMinutes"></param>
         /// <param name="encoding">指定编码时（会跳过编码自动检测）</param>
         /// <returns></returns>
         public static string ReadAllText(string fileName, int cacheMinutes, Encoding encoding)
@@ -98,10 +100,23 @@ namespace CYQ.Data.Tool
         {
             return ReadLines(fileName, 0, DefaultEncoding);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="cacheMinutes"></param>
+        /// <returns></returns>
         public static string[] ReadLines(string fileName, int cacheMinutes)
         {
             return ReadLines(fileName, cacheMinutes, DefaultEncoding);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="cacheMinutes"></param>
+        /// <param name="encoding"></param>
+        /// <returns></returns>
         public static string[] ReadLines(string fileName, int cacheMinutes, Encoding encoding)
         {
             string result = ReadAllText(fileName, cacheMinutes, encoding);
@@ -138,6 +153,13 @@ namespace CYQ.Data.Tool
         {
             return Save(fileName, text, true, true, DefaultEncoding);
         }
+        /// <summary>
+        /// 追加
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="text"></param>
+        /// <param name="encode"></param>
+        /// <returns></returns>
         public static bool Append(string fileName, string text, Encoding encode)
         {
             return Save(fileName, text, true, true, encode);

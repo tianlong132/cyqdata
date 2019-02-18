@@ -66,6 +66,10 @@ namespace CYQ.Data.Tool
                 }
             }
         }
+        /// <summary>
+        /// ÒÆ³ý
+        /// </summary>
+        /// <param name="key"></param>
         public new void Remove(K key)
         {
             Remove(key, 1);
@@ -199,6 +203,9 @@ namespace CYQ.Data.Tool
                 }
             }
         }
+        /// <summary>
+        /// Çå³ý
+        /// </summary>
         public new void Clear()
         {
             if (Count > 0)

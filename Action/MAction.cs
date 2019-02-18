@@ -272,6 +272,7 @@ namespace CYQ.Data
             Init(tableNamesEnum, AppConfig.DB.DefaultConn);
         }
 
+        /// <param name="tableNamesEnum"></param>
         /// <param name="conn">Database connection statement or configuration key
         /// <para>数据库链接语句或配置Key</para></param>
         public MAction(object tableNamesEnum, string conn)
@@ -419,13 +420,16 @@ namespace CYQ.Data
             ResetTable(tableObj, true, null);
         }
 
+        /// <param name="tableObj"></param>
         /// <param name="resetState">Reset Row State (defaultValue:true)
         /// <para>是否重置原有的数据状态（默认true)</para></param>
         public void ResetTable(object tableObj, bool resetState)
         {
             ResetTable(tableObj, resetState, null);
         }
-        /// <param name="newDbName">Other DataBaseName
+        /// <param name="tableObj"></param>
+
+        /// <param name="resetState"></param>        /// <param name="newDbName">Other DataBaseName
         /// <para>其它数据库名称</para></param>
         public void ResetTable(object tableObj, bool resetState, string newDbName)
         {
@@ -587,6 +591,7 @@ namespace CYQ.Data
             return Insert(autoSetValue, _option);
         }
 
+        /// <param name="autoSetValue"></param>
         /// <param name="option">InsertOp
         /// <para>插入选项</para></param>
         public bool Insert(bool autoSetValue, InsertOp option)
