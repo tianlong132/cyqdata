@@ -89,6 +89,13 @@ namespace CYQ.Data.Orm
         {
             sob.SetInit2(entityInstance, tableName, conn);
         }
+        /// <summary>
+        ///  初始化
+        /// </summary>
+        /// <param name="entityInstance"></param>
+        /// <param name="tableName"></param>
+        /// <param name="conn"></param>
+        /// <param name="op"></param>
         protected void SetInit(Object entityInstance, string tableName, string conn, AopOp op)
         {
             sob.SetInit2(entityInstance, tableName, conn, op);
@@ -239,11 +246,24 @@ namespace CYQ.Data.Orm
             int count;
             return Select(0, topN, where, out count);
         }
+        /// <summary>
+        /// 查询列表
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public MDataTable Select(int pageIndex, int pageSize)
         {
             int count;
             return Select(pageIndex, pageSize, null, out count);
         }
+        /// <summary>
+        /// 查询列表，带条件
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
         public MDataTable Select(int pageIndex, int pageSize, string where)
         {
             int count;

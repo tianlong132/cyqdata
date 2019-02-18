@@ -39,6 +39,11 @@ namespace CYQ.Data.Orm
             }
             return result;
         }
+        /// <summary>
+        /// 查询List对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public static List<T> Select<T>()
         {
             int count;
@@ -48,6 +53,7 @@ namespace CYQ.Data.Orm
         /// 列表查询
         /// </summary>
         /// <param name="where">查询条件[可附带 order by 语句]</param>
+        /// <param name="columns">列名的数组</param>
         /// <returns></returns>
         public static List<T> Select<T>(string where, params string[] columns)
         {
@@ -59,17 +65,35 @@ namespace CYQ.Data.Orm
         /// </summary>
         /// <param name="topN">查询几条</param>
         /// <param name="where">查询条件[可附带 order by 语句]</param>
+        /// <param name="columns">列名的数组</param>
         /// <returns></returns>
         public static List<T> Select<T>(int topN, string where, params string[] columns)
         {
             int count;
             return Select<T>(1, topN, where, out count, columns);
         }
+        /// <summary>
+        ///  分页查询
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="columns"></param>
+        /// <returns></returns>
         public static List<T> Select<T>(int pageIndex, int pageSize, params string[] columns)
         {
             int count;
             return Select<T>(pageIndex, pageSize, null, out count, columns);
         }
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="where"></param>
+        /// <param name="columns"></param>
+        /// <returns></returns>
         public static List<T> Select<T>(int pageIndex, int pageSize, string where, params string[] columns)
         {
             int count;
@@ -122,10 +146,23 @@ namespace CYQ.Data.Orm
 
             }
         }
+        /// <summary>
+        /// 插入对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        /// <returns></returns>
         public static bool Insert<T>(T t)
         {
             return Insert<T>(t, InsertOp.ID, false);
         }
+        /// <summary>
+        /// 插入对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        /// <param name="op"></param>
+        /// <returns></returns>
         public static bool Insert<T>(T t, InsertOp op)
         {
             return Insert<T>(t, op, false);
@@ -135,6 +172,8 @@ namespace CYQ.Data.Orm
         /// </summary>
         /// <typeparam name="T">实体类型</typeparam>
         /// <param name="t">实体对象</param>
+        /// <param name="op"></param>
+        /// <param name="insertID"></param>
         /// <returns></returns>
         public static bool Insert<T>(T t, InsertOp op, bool insertID)
         {
@@ -156,6 +195,12 @@ namespace CYQ.Data.Orm
             }
             return result;
         }
+        /// <summary>
+        /// 更新
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        /// <returns></returns>
         public static bool Update<T>(T t)
         {
             return Update<T>(t, null);
@@ -185,6 +230,12 @@ namespace CYQ.Data.Orm
                 return action.Exists(where);
             }
         }
+        /// <summary>
+        /// 获取数量
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="where"></param>
+        /// <returns></returns>
         public static int GetCount<T>(object where)
         {
             using (MAction action = GetMAction<T>())
