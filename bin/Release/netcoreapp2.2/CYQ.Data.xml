@@ -485,6 +485,26 @@
              <para>将日志写到外部txt[web.config中配置路径，配置项为Logpath,默认路径为 "Log/" ]</para>
             </summary>
         </member>
+        <member name="M:CYQ.Data.Log.WriteLogToTxt(System.String,CYQ.Data.LogType)">
+            <summary>
+            写日志到文本
+            </summary>
+            <param name="message"></param>
+            <param name="logType"></param>
+        </member>
+        <member name="M:CYQ.Data.Log.WriteLogToTxt(System.String,System.String)">
+            <summary>
+             写日志到文本
+            </summary>
+            <param name="message"></param>
+            <param name="logType"></param>
+        </member>
+        <member name="M:CYQ.Data.Log.WriteLogToTxt(System.Exception)">
+            <summary>
+            写异常到文本
+            </summary>
+            <param name="err"></param>
+        </member>
         <member name="M:CYQ.Data.Log.GetExceptionMessage(System.Exception)">
             <summary>
             Convert Exception to string
@@ -495,6 +515,11 @@
             <summary>
             A class for you to Write log to database
             <para>日志记录到数据库（需要配置LogConn链接后方有效）</para>
+            </summary>
+        </member>
+        <member name="M:CYQ.Data.SysLogs.#ctor">
+            <summary>
+            初始化
             </summary>
         </member>
         <member name="P:CYQ.Data.SysLogs.ID">
@@ -622,6 +647,7 @@
             <para>参数：表名、视图、自定义语句、MDataRow</para></param>
         </member>
         <member name="M:CYQ.Data.MAction.#ctor(System.Object,System.String)">
+            <param name="tableNamesEnum"></param>
             <param name="conn">Database connection statement or configuration key
             <para>数据库链接语句或配置Key</para></param>
         </member>
@@ -634,11 +660,13 @@
             <para>参数：表名、视图、自定义语句、MDataRow</para></param>
         </member>
         <member name="M:CYQ.Data.MAction.ResetTable(System.Object,System.Boolean)">
+            <param name="tableObj"></param>
             <param name="resetState">Reset Row State (defaultValue:true)
             <para>是否重置原有的数据状态（默认true)</para></param>
         </member>
         <member name="M:CYQ.Data.MAction.ResetTable(System.Object,System.Boolean,System.String)">
-            <param name="newDbName">Other DataBaseName
+            <param name="tableObj"></param>
+            <param name="resetState"></param>        /// <param name="newDbName">Other DataBaseName
             <para>其它数据库名称</para></param>
         </member>
         <member name="M:CYQ.Data.MAction.Insert">
@@ -656,6 +684,7 @@
             <para>自动取值（从上下文环境中）</para></param>
         </member>
         <member name="M:CYQ.Data.MAction.Insert(System.Boolean,CYQ.Data.InsertOp)">
+            <param name="autoSetValue"></param>
             <param name="option">InsertOp
             <para>插入选项</para></param>
         </member>
@@ -2481,11 +2510,19 @@
             <param name="columns">指定查询的列（可选）</param>
             <returns></returns>
         </member>
+        <member name="M:CYQ.Data.Orm.DBFast.Select``1">
+            <summary>
+            查询List对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:CYQ.Data.Orm.DBFast.Select``1(System.String,System.String[])">
             <summary>
             列表查询
             </summary>
             <param name="where">查询条件[可附带 order by 语句]</param>
+            <param name="columns">列名的数组</param>
             <returns></returns>
         </member>
         <member name="M:CYQ.Data.Orm.DBFast.Select``1(System.Int32,System.String,System.String[])">
@@ -2494,6 +2531,28 @@
             </summary>
             <param name="topN">查询几条</param>
             <param name="where">查询条件[可附带 order by 语句]</param>
+            <param name="columns">列名的数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:CYQ.Data.Orm.DBFast.Select``1(System.Int32,System.Int32,System.String[])">
+            <summary>
+             分页查询
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="columns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CYQ.Data.Orm.DBFast.Select``1(System.Int32,System.Int32,System.String,System.String[])">
+            <summary>
+            分页查询
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="where"></param>
+            <param name="columns"></param>
             <returns></returns>
         </member>
         <member name="M:CYQ.Data.Orm.DBFast.Select``1(System.Int32,System.Int32,System.Object,System.Int32@,System.String[])">
@@ -2516,12 +2575,39 @@
             <param name="where">条件</param>
             <returns></returns>
         </member>
+        <member name="M:CYQ.Data.Orm.DBFast.Insert``1(``0)">
+            <summary>
+            插入对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CYQ.Data.Orm.DBFast.Insert``1(``0,CYQ.Data.InsertOp)">
+            <summary>
+            插入对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="t"></param>
+            <param name="op"></param>
+            <returns></returns>
+        </member>
         <member name="M:CYQ.Data.Orm.DBFast.Insert``1(``0,CYQ.Data.InsertOp,System.Boolean)">
             <summary>
             添加一条记录
             </summary>
             <typeparam name="T">实体类型</typeparam>
             <param name="t">实体对象</param>
+            <param name="op"></param>
+            <param name="insertID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CYQ.Data.Orm.DBFast.Update``1(``0)">
+            <summary>
+            更新
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="t"></param>
             <returns></returns>
         </member>
         <member name="M:CYQ.Data.Orm.DBFast.Update``1(``0,System.Object)">
@@ -2537,6 +2623,14 @@
             <summary>
             是否存在指定的条件
             </summary>
+        </member>
+        <member name="M:CYQ.Data.Orm.DBFast.GetCount``1(System.Object)">
+            <summary>
+            获取数量
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="where"></param>
+            <returns></returns>
         </member>
         <member name="T:CYQ.Data.Orm.OrmBase">
             <summary>
@@ -2579,6 +2673,15 @@
             <param name="entityInstance">实体对象,一般写:this</param>
             <param name="tableName">表名,如:Users</param>
             <param name="conn">数据链接,单数据库时可写Null,或写默认链接配置项:"Conn",或直接数据库链接字符串</param>
+        </member>
+        <member name="M:CYQ.Data.Orm.OrmBase.SetInit(System.Object,System.String,System.String,CYQ.Data.Aop.AopOp)">
+            <summary>
+             初始化
+            </summary>
+            <param name="entityInstance"></param>
+            <param name="tableName"></param>
+            <param name="conn"></param>
+            <param name="op"></param>
         </member>
         <member name="M:CYQ.Data.Orm.OrmBase.Set(System.Object,System.Object)">
             <summary>
@@ -2673,6 +2776,23 @@
             </summary>
             <param name="topN">查询几条</param>
             <param name="where">查询条件[可附带 order by 语句]</param>
+            <returns></returns>
+        </member>
+        <member name="M:CYQ.Data.Orm.OrmBase.Select(System.Int32,System.Int32)">
+            <summary>
+            查询列表
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CYQ.Data.Orm.OrmBase.Select(System.Int32,System.Int32,System.String)">
+            <summary>
+            查询列表，带条件
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="where"></param>
             <returns></returns>
         </member>
         <member name="M:CYQ.Data.Orm.OrmBase.Select(System.Int32,System.Int32,System.String,System.Int32@)">
@@ -5046,6 +5166,8 @@
             <summary>
             读取文件内容
             </summary>
+            <param name="fileName"></param>
+            <param name="cacheMinutes"></param>
             <param name="encoding">指定编码时（会跳过编码自动检测）</param>
             <returns></returns>
         </member>
@@ -5053,6 +5175,23 @@
             <summary>
             读取文件内容，并自动识别编码
             </summary>
+        </member>
+        <member name="M:CYQ.Data.Tool.IOHelper.ReadLines(System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+            <param name="cacheMinutes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CYQ.Data.Tool.IOHelper.ReadLines(System.String,System.Int32,System.Text.Encoding)">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+            <param name="cacheMinutes"></param>
+            <param name="encoding"></param>
+            <returns></returns>
         </member>
         <member name="M:CYQ.Data.Tool.IOHelper.Write(System.String,System.String)">
             <summary>
@@ -5068,6 +5207,15 @@
             </summary>
             <param name="fileName"></param>
             <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CYQ.Data.Tool.IOHelper.Append(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            追加
+            </summary>
+            <param name="fileName"></param>
+            <param name="text"></param>
+            <param name="encode"></param>
             <returns></returns>
         </member>
         <member name="M:CYQ.Data.Tool.IOHelper.Delete(System.String)">
@@ -5276,16 +5424,30 @@
             </summary>
         </member>
         <member name="M:CYQ.Data.Tool.JsonHelper.IsJson(System.String,System.Int32@)">
-            <param name="errIndex">the index of the error char
-            <para>错误的字符索引</para></param>
+            <summary>
+            判断字符是不是json
+            </summary>
+            <param name="json"></param>
+            <param name="errIndex">错误的字符索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:CYQ.Data.Tool.JsonHelper.GetValue(System.String,System.String)">
+            <summary>
+            获取json字符指定值
+            </summary>
+            <param name="json"></param>
+            <param name="key"></param>
+            <returns></returns>
         </member>
         <member name="M:CYQ.Data.Tool.JsonHelper.GetValue(System.String,System.String,CYQ.Data.Tool.EscapeOp)">
             <summary>
             Get json value
             <para>获取Json字符串的值</para>
             </summary>
+            <param name="json"></param>
             <param name="key">the name or key of json
             <para>键值(有层级时用：XXX.YYY.ZZZ)</para></param>
+            <param name="op"></param>
             <returns></returns>
         </member>
         <member name="M:CYQ.Data.Tool.JsonHelper.OutResult(System.Boolean,System.String)">
@@ -5296,6 +5458,23 @@
         </member>
         <member name="M:CYQ.Data.Tool.JsonHelper.OutResult(System.Boolean,System.String,System.Boolean)">
             <param name="noQuates">no ""</param>
+        </member>
+        <member name="M:CYQ.Data.Tool.JsonHelper.OutResult(System.Boolean,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="result"></param>
+            <param name="msgObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CYQ.Data.Tool.JsonHelper.OutResult(System.String,System.Object,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="nameValues"></param>
+            <returns></returns>
         </member>
         <member name="M:CYQ.Data.Tool.JsonHelper.Split(System.String)">
             <summary>
@@ -5456,6 +5635,12 @@
             <typeparam name="K">key</typeparam>
             <typeparam name="V">value</typeparam>
         </member>
+        <member name="M:CYQ.Data.Tool.MDictionary`2.Remove(`0)">
+            <summary>
+            移除
+            </summary>
+            <param name="key"></param>
+        </member>
         <member name="P:CYQ.Data.Tool.MDictionary`2.Item(`0)">
             <summary>
             索引取值
@@ -5479,6 +5664,11 @@
         <member name="M:CYQ.Data.Tool.MDictionary`2.Set(`0,`1)">
             <summary>
             当Key为int时，通过此方法取值
+            </summary>
+        </member>
+        <member name="M:CYQ.Data.Tool.MDictionary`2.Clear">
+            <summary>
+            清除
             </summary>
         </member>
         <member name="M:CYQ.Data.Tool.MDictionary`2.ContainsKey(`0)">
